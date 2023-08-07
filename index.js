@@ -1,5 +1,8 @@
 const express = require("express")
+const mongoose = require("mongoose")
 const app = express()
+
+const Usuario = require('./models/Usuario')
 
 //ler Json / middleware
 app.use(
@@ -18,4 +21,9 @@ app.get('/', (req, res) => {
 })
 
 // entregar porta
-app.listen(3000)
+mongoose.connect("mongodb+srv://yuriTCC:01020304@apitcc.wm8hsil.mongodb.net/?retryWrites=true&w=majority")
+.then(() => {
+    app.listen(3000)
+    console.log('Conectou ao banco na porta 3000')
+})
+.catch((err) => console.log(err))
