@@ -19,7 +19,7 @@ app.use(express.json())
 // TESTE
 app.get('/', (req, res) => {
 
-    res.json({ message: 'fazendo teste' })
+    res.json({ message: 'fazendo teste, voce está conectado na API!' })
 
 })
 
