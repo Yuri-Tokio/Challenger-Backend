@@ -8,4 +8,5 @@ const Produto = mongoose.model('Produto', {
     fornecedor: String,
 })
 
+// Campos do backend que estarão ligados com o banco de dados e serão representados no front
 module.exports = Produto

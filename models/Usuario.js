@@ -6,4 +6,6 @@ const Usuario = mongoose.model('Usuario', {
     password: String,
 })
 
+// Campos do backend que estarão ligados com o banco de dados e serão representados no front
+
 module.exports = Usuario
