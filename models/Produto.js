@@ -5,8 +5,8 @@ const Produto = mongoose.model('Produto', {
     ds_produto: String,
     valor: Number,
     categoria: String,
-    url_img: String,
     fornecedor: String,
+    url_img: String,
 })
 
 // Campos do backend que estarão ligados com o banco de dados e serão representados no front

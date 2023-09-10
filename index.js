@@ -46,17 +46,21 @@ app.post('/usuario', async (req, res) => {
 })
 
 app.post ('/photo', async (req, res) =>{
-    const {nm_img , src_img} = req.body
-
-    const photo = {
-        nm_img,
-        src_img,
-    }
 
     try {
-        await Photo.create(photo)
 
-        res.status(201).json({ message: 'Foto inserida no sistema!'})
+        const {nm_img} = req.body
+
+        const file = req.file
+
+        const photo = new Photo({
+            nm_img,
+            src: file
+        });
+
+        await photo.save()
+
+        res.json({ photo, msg: 'Foto inserida no sistema com sucesso!'})
     } catch (error) {
         res.status(500).json({ erro: 'O motivo do erro é ' + error })
     }
@@ -161,15 +165,15 @@ app.delete('/usuario/:id', async (req, res) => {
 
 // CRIANDO PRODUTO NO SISTEMA
 app.post('/produto', async (req, res) => {
-    const { nm_produto, ds_produto, valor, categoria, url_img, fornecedor } = req.body
+    const { nm_produto, ds_produto, valor, categoria, fornecedor, url_img } = req.body
 
     const produto = {
         nm_produto,
         ds_produto,
         valor,
         categoria,
-        url_img,
         fornecedor,
+        url_img
     }
 
     try {
@@ -233,15 +237,15 @@ app.get('/produto/valor/:valor', async (req, res) => {
 app.patch('/produto/:id', async (req, res) => {
     const id = req.params.id
 
-    const { nm_produto, ds_produto, valor, categoria, url_img, fornecedor } = req.body
+    const { nm_produto, ds_produto, valor, categoria, fornecedor, url_img} = req.body
 
     const produto = {
         nm_produto,
         ds_produto,
         valor,
         categoria,
-        url_img,
         fornecedor,
+        url_img
     }
 
     try {
