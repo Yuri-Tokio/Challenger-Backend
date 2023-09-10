@@ -5,6 +5,7 @@ const Produto = mongoose.model('Produto', {
     ds_produto: String,
     valor: Number,
     categoria: String,
+    url_img: String,
     fornecedor: String,
 })
 

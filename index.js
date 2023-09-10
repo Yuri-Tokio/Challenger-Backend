@@ -142,13 +142,14 @@ app.delete('/usuario/:id', async (req, res) => {
 
 // CRIANDO PRODUTO NO SISTEMA
 app.post('/produto', async (req, res) => {
-    const { nm_produto, ds_produto, valor, categoria, fornecedor } = req.body
+    const { nm_produto, ds_produto, valor, categoria, url_img, fornecedor } = req.body
 
     const produto = {
         nm_produto,
         ds_produto,
         valor,
         categoria,
+        url_img,
         fornecedor,
     }
 
@@ -213,13 +214,14 @@ app.get('/produto/valor/:valor', async (req, res) => {
 app.patch('/produto/:id', async (req, res) => {
     const id = req.params.id
 
-    const { nm_produto, ds_produto, valor, categoria, fornecedor } = req.body
+    const { nm_produto, ds_produto, valor, categoria, url_img, fornecedor } = req.body
 
     const produto = {
         nm_produto,
         ds_produto,
         valor,
         categoria,
+        url_img,
         fornecedor,
     }
 
