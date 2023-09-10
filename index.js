@@ -2,8 +2,10 @@ const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
 
+
 const Usuario = require('./models/Usuario')
 const Produto = require('./models/Produto')
+const Photo = require('./models/Photo')
 
 //ler Json / middleware
 app.use(
@@ -38,6 +40,23 @@ app.post('/usuario', async (req, res) => {
         await Usuario.create(usuario)
 
         res.status(201).json({ message: 'Pessoa inserida no sistema!' })
+    } catch (error) {
+        res.status(500).json({ erro: 'O motivo do erro é ' + error })
+    }
+})
+
+app.post ('/photo', async (req, res) =>{
+    const {nm_img , src_img} = req.body
+
+    const photo = {
+        nm_img,
+        src_img,
+    }
+
+    try {
+        await Photo.create(photo)
+
+        res.status(201).json({ message: 'Foto inserida no sistema!'})
     } catch (error) {
         res.status(500).json({ erro: 'O motivo do erro é ' + error })
     }
@@ -258,6 +277,12 @@ app.delete('/produto/:id', async (req, res) => {
         res.status(500).json({ erro: error })
     }
 })
+
+// PHOTO
+
+
+
+
 
 // entregar porta
 mongoose.connect("mongodb+srv://yuriTCC:01020304@apitcc.wm8hsil.mongodb.net/?retryWrites=true&w=majority")
